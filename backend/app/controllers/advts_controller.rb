@@ -2,10 +2,10 @@ class AdvtsController < ApplicationController
   before_action :set_advt, only: [:show, :update, :destroy]
   before_action :authorized, expect: [:index, :show]
 
-  # GET /myadvs
+  # GET /myadvts
   def myadvts
-    @advts = Advt.where user:@advt.id
-    render json: @advts
+    @advts = Advt.where user:@user.id
+    render json: @advts 
   end
 
   # GET /advts
@@ -35,8 +35,8 @@ class AdvtsController < ApplicationController
     user_id = decoded_token[0]['user_id']
     advt = Advt.find_by(id:params[:id])
 
-    if adv.user_id != user_id
-      return render json: {error : "Advertisement does not belongs to you"}
+    if advt.user_id != user_id
+      return render json: {error: "Advertisement does not belongs to you"}
     end
 
     if @advt.update(advt_params)
@@ -51,8 +51,8 @@ class AdvtsController < ApplicationController
     user_id = decoded_token[0]['user_id']
     advt = Advt.find_by(id:params[:id])
 
-    if adv.user_id != user_id
-      return render json: {error : "Advertisement does not belongs to you"}
+    if advt.user_id != user_id
+      return render json: {error: "Advertisement does not belongs to you"}
     end
 
     @advt.destroy

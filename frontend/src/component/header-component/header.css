@@ -1,0 +1,66 @@
+.app
+{
+    width: 100vw;
+}
+
+.app button{
+    position: absolute;
+    left:90vw;
+    top:10px;
+}
+.logo {
+    font-family: Montserrat;
+    font-size: 16px;
+    color: #fff;
+    text-decoration: none;
+    margin-left: 1rem;
+}
+.logo:hover {
+    color:#fff;
+    cursor:pointer;
+}
+.app #Navbar
+{
+  width:100vw !important;
+  min-height: 60px;
+  z-index: 100;
+  position: relative;
+}
+.app img{
+    height: 60px
+ }
+.app #Navlink
+{
+    float: left;
+    color: #fff;
+    text-align: center;
+    padding: 5px;
+    text-decoration: none;
+    font-family: Montserrat;
+    font-size: 16px;
+    margin-left:10px ;
+    margin-right: 10px;
+    font-style: bold;
+}
+.mrgn {
+    margin-left: 52rem;
+}
+
+@media screen and (max-width: 500px) {
+    .app button{
+        position: absolute;
+        left:85vw;
+        top:15px;
+    } 
+    .app #Navlink
+    {
+        font-size: 15px;
+    }
+    .app #nav-link
+    {
+        padding: 0px 25vw;
+    }
+    .app img{
+        height: 40px
+     }   
+}

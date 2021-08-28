@@ -1,0 +1,235 @@
+
+.login .images
+{
+    width:70%;
+    margin-top:30vh !important;
+}
+.login input{
+    background: transparent;
+    border: 1px solid #262537;
+    border-radius: 10px;
+    font-family: 'Montserrat', sans-serif;
+    color: #262537;
+    padding-left:10px;
+    width:70%;
+    height:35px;
+    letter-spacing:1px;
+    font-weight:600;
+    /* box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); */
+} 
+.login label{
+    text-align:left !important;
+    color:#262537;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 2px;
+    font-weight: 700;
+    font-size: 22px;
+    
+}
+.login .form-padding
+{
+    padding: 2rem 1rem 0 1rem; 
+}
+.login .head
+{
+    font-size: 22px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+.padding-col {
+    padding: 0 22rem !important;
+}
+
+.box {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border-radius: 5px;
+  margin-top: 8rem;
+  padding: 1rem 0;
+}
+.login .head-display
+    {
+        display:none;
+    }
+.login .error
+{
+    color: red;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.login .opacity
+{
+    opacity:0
+}
+.login .images{
+    margin-right:0px;
+}
+.login .invalid
+{
+    border:2px solid red;
+}
+/* .login button,
+.login button::after {
+	transition: all 0.3s;
+}
+
+.login button {
+  background: none;
+  
+  border-radius:3% !important;
+  border: 1px solid #262537 ;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  display: block;
+  font-size:1vw !important;
+  font-weight: 600;
+  margin: 1em auto;
+  padding:0.5vw 1.2vw;
+  position: relative;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  left: -6vw;
+  
+} */
+
+
+.login button::before,
+.login button::after {
+  background: #fff;
+  content: '';
+  position: absolute;
+  z-index: -1;
+}
+/* .login .btn-4
+{
+    position: relative;
+    z-index: 10;
+} */
+/* .login .btn-4::before {
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  
+  .login .btn-4::after {
+    background:#262537;
+    height: 100%;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  
+  .login .btn-4:hover:after {
+    height: 0;
+    left: 50%;
+    top: 50%;
+    width: 0;
+  }
+  
+  .login button:hover {
+  color: #262537;
+} */
+@media only screen and (max-width: 991px) {
+    .login .display
+    {
+        display: none;
+    }
+}
+
+
+@media only screen and (max-width: 991px) {
+    .login .padding
+    {
+        padding: 50px 30vw;
+    }
+    .login .form-padding
+    {
+        padding-left: 0px;
+        
+    }
+    .login input
+    {
+        width: 50%;
+    }
+    .login .form-center
+    {
+        text-align: center;
+    }
+    .login .label-padding
+    {
+        padding-left: 25vw;
+    }
+    .login .error{
+        margin-left: 25vw;
+        font-size: 10px;
+    }
+    .login .head
+    {
+        font-size: 3vw;
+    }
+    .login button{
+        font-size: 2vw !important;
+        padding:1vw 2vw;
+        left: 0.8vw;
+        
+    }
+    
+}
+@media only screen and (max-width: 500px) {
+    .login input, .contact textarea
+    {
+        width: 80%;
+    }
+    .login .head-display
+    {
+        display: block;
+    
+        
+    }
+    .login .head-display2
+    {
+        display:none;
+    }
+    .login .display
+    {
+        display:block;
+        width: 40%;
+        margin-top:10px !important;
+        margin-left:27vw
+    }
+    .login .label-padding
+    {
+        padding-left: 10vw;
+    }
+    .login .form-padding
+    {
+        padding-top: 0px;
+    }
+    
+    .login .error{
+        margin-left: 10vw;
+        font-size: 10px;
+    }
+    .login .head
+    {
+        font-size: 4vw;
+        margin-top:80px;
+        padding-left: 33vw;
+    }
+    .login label{
+        font-size: 4vw;
+    }
+    .login .remove
+    {
+        padding-left: 0vw;
+        padding-right: 0px;
+    }
+    .login button{
+        font-size: 4vw !important;
+        padding:2vw 4vw;
+        left: 0;
+    }
+
+}

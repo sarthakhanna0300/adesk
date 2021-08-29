@@ -1,0 +1,176 @@
+.create input{
+  background: transparent;
+  border: 1px solid #262537;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  color: #262537;
+  padding-left:10px;
+  width:70%;
+  height:35px;
+  letter-spacing:1px;
+  font-weight:600;
+  /* box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22); */
+} 
+.create label{
+  text-align:left !important;
+  color:#262537;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+.create .form-padding
+{
+padding: 2rem 1rem 0 1rem; 
+}
+.create .head
+{
+  font-size: 22px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+.create .head-display
+  {
+      display:none;
+  }
+.create .error
+{
+  color: red;
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: 1px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.create .opacity
+{
+  opacity:0
+}
+.create .images{
+  margin-right:0px;
+}
+.create .invalid
+{
+  border:2px solid red;
+}
+
+.padding-col {
+  padding: 0 22rem !important;
+}
+
+.box {
+box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+border-radius: 5px;
+margin-top: 8rem;
+padding: 1rem 0;
+}
+
+
+.create button::before,
+.create button::after {
+background: #fff;
+content: '';
+position: absolute;
+z-index: -1;
+}
+
+@media only screen and (max-width: 991px) {
+  .create .display
+  {
+      display: none;
+  }
+}
+
+
+@media only screen and (max-width: 991px) {
+  .create .padding
+  {
+      padding: 50px 30vw;
+  }
+  .create .form-padding
+  {
+      padding-left: 0px;
+      
+  }
+  .create input
+  {
+      width: 50%;
+  }
+  .create .form-center
+  {
+      text-align: center;
+  }
+  .create .label-padding
+  {
+      padding-left: 25vw;
+  }
+  .create .error{
+      margin-left: 25vw;
+      font-size: 10px;
+  }
+  .create .head
+  {
+      font-size: 3vw;
+  }
+  .create button{
+      font-size: 2vw !important;
+      padding:1vw 2vw;
+      left: 0;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .create input, .contact textarea
+  {
+      width: 80%;
+  }
+  .create .head-display
+  {
+      display: block;
+  
+      
+  }
+  .create .head-display2
+  {
+      display:none;
+  }
+  .create .display
+  {
+      display:block;
+      width: 40%;
+      margin-top:10px !important;
+      margin-left:27vw
+  }
+  .create .label-padding
+  {
+      padding-left: 10vw;
+  }
+  .create .form-padding
+  {
+      padding-top: 0px;
+  }
+  
+  .create .error{
+      margin-left: 10vw;
+      font-size: 10px;
+  }
+  .create .head
+  {
+      font-size: 4vw;
+      margin-top:80px;
+      padding-left: 18vw;
+  }
+  .create label{
+      font-size: 4vw;
+  }
+  .create .remove
+  {
+      padding-left: 0vw;
+      padding-right: 0px;
+  }
+  .create button{
+      font-size: 4vw !important;
+      padding:2vw 4vw;
+      left: 0;
+  }
+}
+.mrgn2 {
+  margin-left: 1rem !important;
+}

@@ -1,6 +1,6 @@
 class AdvtsController < ApplicationController
   before_action :set_advt, only: [:show, :update, :destroy]
-  before_action :authorized, expect: [:index, :show]
+  before_action :authorized, except: [:index, :show]
 
   # GET /myadvts
   def myadvts

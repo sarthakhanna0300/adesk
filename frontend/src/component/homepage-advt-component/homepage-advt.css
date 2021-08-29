@@ -1,0 +1,9 @@
+.padd {
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  border: 0px;
+}
+.col-pad {
+  padding: 0 3.5rem !important;
+}

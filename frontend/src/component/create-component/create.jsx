@@ -1,65 +1,52 @@
 import React, { Component } from "react";
-import Swal from "sweetalert2";
-import {signup} from '../.././ServerService'
-import "./sign-up.css";
-class Signup extends Component {
-  state = {
-    submitted: false,
-    orderForm: {
-      name: {
-        label: "Name",
-        elementType: "input",
-        elementConfig: {
-          type: "text",
-        },
-        error: "Name is required",
-        validation: {
-          required: true,
-        },
-        valid: false,
-        value: "",
-        touched: false,
-      },
-      email: {
-        label: "Email",
-        elementType: "input",
-        elementConfig: {
-          type: "email",
-        },
-        error: " Valid Email is Required",
-        validation: {
-          required: true,
-          ajax: /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/,
-        },
-        valid: false,
-        value: "",
-        touched: false,
-      },
+import "./create.css";
+import { connect } from "react-redux";
+import "./create.css";
+import {create} from '../../ServerService'
+const axios = require('axios');
 
-      password: {
-        label: "Password",
+class Create extends Component {
+  state = {
+    present: false,
+    show: false,
+    orderForm: {
+      title: {
+        label: "Title",
         elementType: "input",
         elementConfig: {
           type: "text",
         },
-        error: "Enter Your Password",
+        error: "Provide Title to Advertisement",
         validation: {
           required: true,
-          ajax: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{6,})/,
         },
         valid: false,
         value: "",
         touched: false,
       },
-      confirm_password: {
-        label: "Confirm Password",
+      desc: {
+        label: "Details",
         elementType: "input",
         elementConfig: {
           type: "text",
         },
-        error: "Password dose not match",
+        error: "Enter Description",
         validation: {
-          checkwith: "password",
+          required: true,
+        },
+        valid: false,
+        value: "",
+        touched: false,
+      },
+      image: {
+        label: "Image Url",
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+        },
+        error: "Provide Image to Advertisement",
+        validation: {
+          required: true,
         },
         valid: false,
         value: "",
@@ -72,21 +59,14 @@ class Signup extends Component {
     if (rules.required) {
       isValid = value.trim() !== "" && isValid;
     }
-    if (rules.ajax) {
-      isValid = value.trim().match(rules.ajax) && isValid;
-    }
     if (rules.minlength) {
       isValid = value.trim().length >= rules.minlength && isValid;
-    }
-    if (rules.checkwith) {
-      isValid =
-        value.trim() == this.state.orderForm[rules.checkwith].value && isValid;
     }
     return isValid;
   };
   inputchangheHandler = (event, id) => {
-    let UpdatedForm = { ...this.state.orderForm };
-    let updatedElement = { ...this.state.orderForm[id] };
+    const UpdatedForm = { ...this.state.orderForm };
+    const updatedElement = { ...this.state.orderForm[id] };
     updatedElement.value = event.target.value;
     updatedElement.valid = this.Checkvalidation(
       event.target.value,
@@ -104,53 +84,19 @@ class Signup extends Component {
   };
   submit = (event) => {
     event.preventDefault();
-    this.setState({ submitted: true });
-    let valid = true;
-    const UpdatedForm = { ...this.state.orderForm };
-    //  console.log("heloooooooo");
-    for (let key in this.state.orderForm) {
-      valid = valid && this.state.orderForm[key].valid;
-      let updatedElement = { ...this.state.orderForm[key] };
-      if (!this.state.orderForm[key].valid) {
-        updatedElement.value = "";
-        UpdatedForm[key] = updatedElement;
-      }
-    }
-    this.setState({ orderForm: UpdatedForm });
-    if (valid) {
-    //   this.props.changeLoader();
-      signup(
-        this.state.orderForm.name.value,
-        this.state.orderForm.email.value,
-        this.state.orderForm.password.value
-      ).then((response) => {
-          console.log(response);
+    create(
+      this.state.orderForm.title.value,
+      this.state.orderForm.desc.value,
+      this.state.orderForm.image.value,
+      this.state.show
+    ).then((response) => {
+      console.log(response);
+      response.json().then((response) => {
+        console.log(response.user);
         // this.props.changeLoader();
-        response.json().then((response) => {
-          let message = "";
-          if (response.data) {
-            message = response.data[0].msg;
-          } else {
-            message = response.message;
-          }
-          Swal.fire({
-            html:
-              '<div style = "color:black;background:white ; box-shadow:2px 2px 10px black; padding: 10px 10px  ">' +
-              message +
-              "</div> ",
-            showConfirmButton: false,
-            background: "transparent",
-            timer: 5000,
-          });
-          console.log(response);
-          localStorage.setItem("token", response.token);
-          localStorage.setItem("name",response.user.username);
-          this.props.history.replace('/');
-        });
-      } ,error =>{
-        console.log(error);
+        this.props.history.replace("/");
+      });
     });
-    }
   };
   render() {
     let Array = [];
@@ -159,17 +105,18 @@ class Signup extends Component {
       Array.push({ id: key, config: this.state.orderForm[key] });
     }
     return (
-      <div className="signup">
+      <div className="create">
         <div className="container">
           <div className="row">
             <div className="col-lg-12 padding-col">
               <div className="box">
-                <div className="head-display2 head">Register</div>
+                <div className="head-display2 head center">Create Advertisement</div>
                 <div className="form-padding">
                   <form onSubmit={(event) => this.submit(event)}>
                     {Array.map((element) => {
                       return (
                         <div key={element.id}>
+                          <div className="label-padding"></div>
                           <div className="form-center">
                             <input
                               value={element.config.value}
@@ -179,7 +126,7 @@ class Signup extends Component {
                                 this.inputchangheHandler(event, element.id)
                               }
                               className={
-                                !this.state.submitted || element.config.valid
+                                !element.config.touched || element.config.valid
                                   ? null
                                   : "invalid"
                               }
@@ -188,7 +135,7 @@ class Signup extends Component {
                           <div>
                             <span
                               className={
-                                !this.state.submitted || element.config.valid
+                                !element.config.touched || element.config.valid
                                   ? "opacity"
                                   : "error"
                               }
@@ -199,12 +146,20 @@ class Signup extends Component {
                         </div>
                       );
                     })}
+                    <div class="btn-toolbar">
                     <button
-                      className="mx-auto text-center btn btn-primary mt-2"
+                      className="mx-auto text-center btn btn-primary mt-2 mr-2"
                       type="submit"
                     >
-                      Register
+                      Draft
                     </button>
+                    <button
+                      className="mx-auto text-center btn btn-success mt-2 mr-2"
+                      type="submit" onClick={this.state.show=true}
+                    >
+                      Publish
+                    </button>
+                    </div>
                   </form>
                 </div>
               </div>
@@ -215,4 +170,15 @@ class Signup extends Component {
     );
   }
 }
-export default Signup;
+
+const mapStateToProps = (state) => {
+  return {
+    ctr: state.present,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeLoader: () => dispatch({ type: "SetToken" }),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Create);

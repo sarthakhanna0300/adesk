@@ -2,12 +2,24 @@ import React from "react";
 import "./header.css";
 import { NavLink } from "react-router-dom";
 import { Navbar, Nav } from "react-bootstrap";
+import { connect } from "react-redux";
 // import {authguard} from '../store/ServerService'
 class Header extends React.Component {
-  logout() {
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     checkstorage:Boolean,
+  //     present:false
+  //   };
+  // }
+
+  logout = () => {
     localStorage.removeItem("token");
-  }
+    this.props.changeLoader();
+    // console.log("djfv")
+  };
   render() {
+    console.log(this.props.ctr);
     return (
       <div className="app">
         <Navbar
@@ -24,24 +36,34 @@ class Header extends React.Component {
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto"></Nav>
             <Nav>
-            <Nav.Link id="nav-link" className="mrgn">
-                <NavLink id="Navlink" exact c to="/advertisements">
-                  Advertisements
-                </NavLink>
-                </Nav.Link>
-              <Nav.Link
+            <Nav.Link
                 style={{
-                  display: !localStorage.getItem("token") ? "block" : "none",
+                  display: this.props.ctr ? "block" : "none",
                 }}
                 id="nav-link"
               >
-                <NavLink id="Navlink" exact c to="/login">
-                  Login
+                <NavLink id="Navlink" exact c to="/create">
+                  {/* {{token}} */} Create 
+                </NavLink>
+              </Nav.Link>
+              <Nav.Link id="nav-link" className="mrgn">
+                <NavLink id="Navlink" exact c to="/">
+                  Advertisements
                 </NavLink>
               </Nav.Link>
               <Nav.Link
                 style={{
-                  display: !localStorage.getItem("token") ? "block" : "none",
+                  display: !this.props.ctr ? "block" : "none",
+                }}
+                id="nav-link"
+              >
+                <NavLink id="Navlink" exact c to="/login">
+                  {/* {{token}} */} Login
+                </NavLink>
+              </Nav.Link>
+              <Nav.Link
+                style={{
+                  display: !this.props.ctr ? "block" : "none",
                 }}
                 id="nav-link"
               >
@@ -51,7 +73,7 @@ class Header extends React.Component {
               </Nav.Link>
               <Nav.Link
                 style={{
-                  display: localStorage.getItem("token") ? "block" : "none",
+                  display: this.props.ctr ? "block" : "none",
                 }}
                 id="nav-link"
               >
@@ -66,4 +88,14 @@ class Header extends React.Component {
     );
   }
 }
-export default Header;
+const mapStateToProps = (state) => {
+  return {
+    ctr: state.present,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    changeLoader: () => dispatch({ type: "SetToken" }),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

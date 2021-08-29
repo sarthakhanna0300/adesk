@@ -64,3 +64,9 @@
         height: 40px
      }   
 }
+.display {
+    display: block;
+}
+.notdisplay{
+    display: none;
+}

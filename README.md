@@ -23,7 +23,7 @@ User can create,delete,update and view advertisements.
 ![Image](/assets/Advertisements.png)
 
 ### Create advertisement
-![Image](/assets/create.png)
+![Image](/assets/Create.png)
 
 
 
